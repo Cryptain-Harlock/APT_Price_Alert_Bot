@@ -11,6 +11,10 @@ let isPaused = false; // Tracks whether the bot is paused or running
 const iconPath = app.isPackaged
   ? path.join(process.resourcesPath, "aptos.png") // This will work after packaging
   : path.join(__dirname, "../aptos.png"); // This works during development
+// const iconPath = path.join(
+//   app.isPackaged ? process.resourcesPath : __dirname,
+//   "aptos.png"
+// );
 
 // Function to fetch Aptos price and send Windows notification
 async function fetchAptosPriceAndNotify(): Promise<void> {
@@ -99,6 +103,9 @@ function updateTrayMenu() {
 
 // Start the Electron app
 app.whenReady().then(() => {
+  if (process.platform === "win32") {
+    app.setAppUserModelId(app.name); // Ensures the app shows in the notification area on Windows
+  }
   startPriceAlertBot();
   createTray(); // Create the system tray icon when the app is ready
 
