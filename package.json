@@ -1,12 +1,34 @@
 {
   "name": "apt_price_alert_bot",
   "version": "1.0.0",
-  "description": "This bot alerts the price of APT per 30 mins",
+  "description": "This bot alerts the price of APT per min",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
     "package-win": "electron-packager . AptosAlert --platform=win32 --arch=x64 --out=dist --overwrite --entry-point=dist/main.js"
+  },
+  "build": {
+    "files": [
+      "src/**/*",
+      "aptos.png"
+    ],
+    "extraResources": [
+      {
+        "from": "aptos.png",
+        "to": "aptos.png"
+      }
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "appId": "com.aptos.pricealertbot",
+    "win": {
+      "icon": "aptos.png",
+      "target": [
+        "nsis"
+      ]
+    }
   },
   "keywords": [],
   "author": "",
@@ -14,8 +36,7 @@
   "dependencies": {
     "@aptos-labs/ts-sdk": "^1.29.1",
     "esrun": "^3.2.26",
-    "node-notifier": "^10.0.1",
-    "path": "^0.12.7"
+    "node-notifier": "^10.0.1"
   },
   "devDependencies": {
     "@types/node-notifier": "^8.0.5",
