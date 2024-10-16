@@ -14,7 +14,8 @@
   "dependencies": {
     "@aptos-labs/ts-sdk": "^1.29.1",
     "esrun": "^3.2.26",
-    "node-notifier": "^10.0.1"
+    "node-notifier": "^10.0.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@types/node-notifier": "^8.0.5",

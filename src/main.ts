@@ -1,6 +1,7 @@
 import { app } from "electron";
 import axios from "axios";
 import notifier from "node-notifier";
+import path from "path";
 
 // Function to fetch Aptos price and send Windows notification
 async function fetchAptosPriceAndNotify(): Promise<void> {
@@ -16,9 +17,13 @@ async function fetchAptosPriceAndNotify(): Promise<void> {
 
     // Send Windows notification
     notifier.notify({
-      title: "Aptos Price Alert",
-      message: `Aptos Price: $${aptosPrice}`,
-      sound: true, // Set to true for sound notification
+      title: "🚨 APTOS PRICE ALERT",
+      message: `$ ${aptosPrice()}`,
+      sound: true,
+      icon: path.join(__dirname, "aptos.png"),
+      wait: true,
+      urgency: "critical",
+      timeout: false,
     });
   } catch (error) {
     console.error("Error fetching Aptos price:", error);
@@ -29,9 +34,9 @@ async function fetchAptosPriceAndNotify(): Promise<void> {
 function startPriceAlertBot(): void {
   console.log("Aptos price alert bot started.");
 
-  // Fetch price immediately and every 5 minutes
+  // Fetch price immediately and per minute
   fetchAptosPriceAndNotify();
-  setInterval(fetchAptosPriceAndNotify, 5 * 60 * 1000);
+  setInterval(fetchAptosPriceAndNotify, 60 * 1000);
 }
 
 // Start the Electron app
