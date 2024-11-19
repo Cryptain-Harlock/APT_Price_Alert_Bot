@@ -28,12 +28,12 @@ async function fetchAptosPriceAndNotify(): Promise<void> {
     const aptosPrice = response.data.aptos.usd;
     const timestamp = new Date().toLocaleTimeString();
 
-    console.log(`[${timestamp}] Aptos Price: $${aptosPrice}`);
+    console.log(`[${timestamp}] Aptos Price: $ ${aptosPrice}`);
 
     // Send Windows notification
     notifier.notify({
-      title: "🚨 APTOS PRICE ALERT",
-      message: `$ ${aptosPrice}`,
+      title: `🚨 Alert`,
+      message: `${aptosPrice}`,
       sound: true,
       icon: iconPath, // Use the correct icon path
       wait: true,
