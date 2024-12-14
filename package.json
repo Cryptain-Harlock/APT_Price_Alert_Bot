@@ -34,7 +34,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aptos-labs/ts-sdk": "^1.29.1",
+    "axios": "^1.7.9",
     "esrun": "^3.2.26",
     "node-notifier": "^10.0.1"
   },
